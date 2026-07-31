@@ -1,1 +1,279 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaleesa Houle</title>
+<meta name="description" content="Jaleesa Houle — mechanical engineer (Ph.D., University of Nevada, Reno) working across instrumentation, computational fluid dynamics, and machine learning for physical systems.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23226a67'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html">Jaleesa Houle</a>
+    <a class="nav-link" href="publications.html">Publications</a>
+    <a class="nav-link" href="https://github.com/JaleesaHoule">GitHub</a>
+    <a class="nav-link" href="https://www.linkedin.com/in/jaleesahoule">LinkedIn</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="plume" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div>
+      <p class="kicker">Mechanical Engineer · Ph.D., University of Nevada, Reno</p>
+      <h1>Jaleesa Houle</h1>
+      <p class="lede">
+        My work has focused on sensory-processing and navigational strategies in olfactory search, data science methods for messy time series, near-surface wind variability and atmospheric science. I enjoy building tools and communicating results in ways that are accessible to a broad audience.
+      </p>
+      <div class="links">
+        <a class="chip primary" href="mailto:jaleesa.houle@gmail.com">Email</a>
+        <a class="chip" href="assets/Jaleesa_Houle_CV.pdf">Download CV</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="assets/headshot.jpg" alt="Jaleesa Houle"
+           onerror="this.closest('.portrait').classList.add('is-empty')">
+      <span class="initials">JH</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+
+  <section id="experience">
+    <p class="section-label">Experiences</p>
+    <div class="tl">
+
+
+      <div class="tl-row">
+        <div class="tl-when">June 2026 - present</div>
+        <div>
+          <h3>Postdoctoral Researcher</h3>
+          <p class="tl-org">University of Nevada, Reno · Mechanical Engineering</p>
+          <p class="tl-body">
+           Exploring the benefits of active movement for state observability when a system is subject to model uncertainty.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">2021 — May 2026</div>
+        <div>
+          <h3>Graduate Research Fellow</h3>
+          <p class="tl-org">University of Nevada, Reno · Mechanical Engineering</p>
+          <p class="tl-body">
+          <i>Dissertation: Characterizing near-surface unsteady flow and its impact on aerial olfactory search. </i>
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">Summer 2025</div>
+        <div>
+          <h3>Graduate R&amp;D Intern</h3>
+          <p class="tl-org">Sandia National Laboratories · National Solar Thermal Test Facility</p>
+          <p class="tl-body">
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">2020 - 2021 <br> 2017 — 2018 </div>
+        <div>
+          <h3>Audio/Visual Technician</h3>
+          <p class="tl-org">Multi Media Specialists · Manchester, NH</p>
+          <p class="tl-body">
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">2020</div>
+        <div>
+          <h3>Minesite Utilities Worker</h3>
+          <p class="tl-org">ESS Support Services · Port Hedland, Australia</p>
+          <p class="tl-body">
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">2019</div>
+        <div>
+          <h3>Field Crew Leader</h3>
+          <p class="tl-org">Conservation Corps Minnesota &amp; Iowa · St. Paul, MN</p>
+          <p class="tl-body">
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="section-label">Selected projects</p>
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-media">
+          <video src="assets/proj-latentexplorer.mp4" poster="assets/proj-latentexplorer.jpg"
+                 autoplay muted loop playsinline preload="auto"
+                 aria-label="Screen recording of the Latent Space Explorer GUI"
+                 onerror="this.closest('.card-media').remove()"></video>
+          <span class="media-badge">demo</span>
+        </div>
+        <div class="card-body">
+          <p class="cat">ML tooling · interactive visualization</p>
+          <h3>Latent Space Explorer</h3>
+          <p class="card-when">2025 · Python package</p>
+          <p>
+            A modular tool for interrogating what an autoencoder actually learned. Train a VAE on
+            trajectory data, project the latent space to 2D, then click anywhere on the map to
+            reconstruct or generate a trajectory. Packaged with an example notebook so a colleague
+            can run it on their own data.
+          </p>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">VAE</span><span class="tag">PCA</span><span class="tag">interactive GUI</span></div>
+          <div class="card-links">
+            <a href="https://github.com/JaleesaHoule/LatentSpaceExplorer">Code</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media card-media--ink">
+          <video src="assets/proj-gustresponse.mp4" poster="assets/proj-gustresponse.jpg"
+                 autoplay muted loop playsinline preload="auto"
+                 aria-label="Measured flight trajectory overlaid on the simulated gust flow field"
+                 onerror="this.closest('.card-media').remove()"></video>
+          <span class="media-badge">CFD overlay</span>
+        </div>
+        <div class="card-body">
+          <p class="cat">Moving-mesh CFD · trajectory analysis</p>
+          <h3>Gust response in free flight</h3>
+          <p class="card-when">2024 – 2026 · published study</p>
+          <p>
+            How do robust fliers respond to getting blown off course while performing a task? I ran optogenetically triggered wind-tunnel
+            experiments with multi-camera tracking, created a moving-mesh CFD model of our wind tunnel setup, and merged the wind and trajectory streams into
+            one dataset — showing that freely flying flies keep track of wind history when performing search tasks.
+          </p>
+          <div class="tags"><span class="tag">CFD</span><span class="tag">dynamic mesh</span><span class="tag">Python</span><span class="tag">multi-camera tracking</span></div>
+          <div class="card-links">
+            <a href="https://github.com/JaleesaHoule/GustResponseOptoTracking">Code</a>
+            <a href="https://doi.org/10.64898/2026.04.05.716000">Preprint</a>
+            <a href="https://doi.org/10.5061/dryad.gb5mkkx4x">Data</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="assets/proj-yellowjacket.jpg"
+               alt="An instrumented trap with its datalogger and real-time clock labeled, beside a map of the three deployment sites — forest, urban, and farm — with photos of each installation"
+               onerror="this.closest('.card-media').remove()">
+           <span class="media-badge">experimental methods</span>     
+        </div>
+        <div class="card-body">
+          <p class="cat">Embedded firmware · field data engineering</p>
+          <h3>Outdoor odor-tracking study</h3>
+          <p class="card-when">2023 – 2025 · published study</p>
+          <p>
+            I modified commerical insect traps with custom firmware to track insect arrival events, then deployed them across farm,
+            forest, and urban sites, and logged arrivals alongside 10 Hz wind measurements for six continuous
+            months, then parsed months of raw binary logs for insight into the atmospheric conditions yellowjackets are most likely to locate odors in.
+          </p>
+          <div class="tags"><span class="tag">Arduino / C++</span><span class="tag">binary log parsing</span><span class="tag">HDF5</span><span class="tag">statistics</span></div>
+          <div class="card-links">
+            <a href="https://github.com/JaleesaHoule/YellowJacketTracking">Code</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="beyond">
+    <p class="section-label">Beyond work</p>
+    <div class="prose">
+      <p>
+        I've thru-hiked the Appalachian Trail, the Pacific Crest Trail, the Continental Divide Trail,
+        and Te Araroa across New Zealand. I sometimes run far and I dabble in making sourdough.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Jaleesa Houle · Reno, Nevada</span>
+    <span class="footer-links">
+      <a href="mailto:jaleesa.houle@gmail.com">Email</a>
+      <a href="assets/Jaleesa_Houle_CV.pdf">CV</a>
+      <a href="publications.html">Publications</a>
+      <a href="https://github.com/JaleesaHoule">GitHub</a>
+      <a href="https://www.linkedin.com/in/jaleesahoule">LinkedIn</a>
+    </span>
+  </div>
+</footer>
+
+<script src="plume.js"></script>
+<script>
+/* Card demo videos: play only while on screen, click to toggle,
+   and never autoplay for visitors who ask for reduced motion. */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var videos = [].slice.call(document.querySelectorAll('.card-media video'));
+  if (!videos.length) return;
+
+  // Reduced motion: cancel the markup autoplay, hand over manual controls.
+  if (reduced) {
+    videos.forEach(function (v) { v.autoplay = false; v.pause(); v.controls = true; });
+    return;
+  }
+
+  videos.forEach(function (v) {
+    // Click toggles. A manual pause sticks — scrolling won't restart it.
+    v.addEventListener('click', function () {
+      if (v.paused) { v.dataset.userPaused = ''; v.play(); }
+      else { v.dataset.userPaused = '1'; v.pause(); v.controls = true; }
+    });
+
+    // The autoplay attribute covers anything already on screen at load, but a
+    // browser can still refuse it. Nudge it once the data is there, and fall
+    // back to controls if the play promise is rejected outright.
+    var kick = function () {
+      if (v.dataset.userPaused) return;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { v.controls = true; });
+    };
+    if (v.readyState >= 2) kick();
+    v.addEventListener('loadeddata', kick, { once: true });
+  });
+
+  if (!('IntersectionObserver' in window)) return;
+
+  // Pause offscreen so background tabs and long scrolls aren't decoding video.
+  // rootMargin starts playback just before the card enters the viewport.
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) {
+        if (!v.dataset.userPaused) {
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+      } else if (!v.paused) {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '150px 0px' });
+
+  videos.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>

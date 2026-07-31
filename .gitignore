@@ -1,0 +1,25 @@
+.DS_Store
+
+# Source résumé drafts — these contain a home address and phone number,
+# and this repo is public. Kept locally, never committed.
+old_example_resumes/
+
+# Full-frame original of the profile photo. Only the cropped
+# assets/headshot.jpg is published.
+assets/photo-original.png
+
+# Working media in the repo root. Everything the site actually serves lives in
+# assets/, so nothing here needs publishing — and GitHub rejects files over
+# 100 MB, which raw simulation exports blow past easily.
+*.mov
+/*.avi
+/*.mp4
+/*.jpg
+/*.png
+
+# Anything not meant for the public site. The CV lives here for now — both the
+# cv.html source page and the built PDF — which is why the site's "CV" links
+# resolve to a 404. Kept out of the served folder entirely so the local preview
+# behaves exactly like the live site.
+# To publish the CV:  cp _local/Jaleesa_Houle_CV.pdf assets/
+_local/

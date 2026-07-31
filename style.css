@@ -1,0 +1,370 @@
+/* ---------------------------------------------------------------
+   Jaleesa Houle — portfolio styles
+   Palette: teal + earth + greyscale. Light/dark follow the OS.
+   --------------------------------------------------------------- */
+
+:root {
+  --ink:        #1e2426;
+  --ink-soft:   #4c5659;
+  --ink-faint:  #7b8487;
+  --rule:       #ddd9d2;
+  --bg:         #f6f5f2;
+  --bg-panel:   #fffefb;
+  --bg-sunk:    #efeeea;
+
+  --teal:       #226a67;
+  --teal-deep:  #17504e;
+  --teal-soft:  #e2ecea;
+  --clay:       #9a6a48;
+  --sage:       #6d7f6c;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --measure: 70ch;
+  --page: 58rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:        #e8e6e1;
+    --ink-soft:   #aeaaa2;
+    --ink-faint:  #7f7a72;
+    --rule:       #2e3436;
+    --bg:         #15191a;
+    --bg-panel:   #1c2123;
+    --bg-sunk:    #191e1f;
+
+    --teal:       #6cb5ae;
+    --teal-deep:  #8ecec7;
+    --teal-soft:  #1c2b2a;
+    --clay:       #c18f69;
+    --sage:       #8ea68c;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--page); margin: 0 auto; padding: 0 1.6rem; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: var(--page); margin: 0 auto;
+  padding: 0.8rem 1.6rem;
+  display: flex; align-items: baseline; gap: 1.3rem; flex-wrap: wrap;
+}
+.nav-name {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+  color: var(--ink); margin-right: auto;
+}
+.nav-name:hover { text-decoration: none; color: var(--teal); }
+.nav a.nav-link { color: var(--ink-soft); font-size: 0.89rem; letter-spacing: 0.02em; }
+.nav a.nav-link:hover { color: var(--teal); text-decoration: none; }
+.nav a.nav-link[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--teal); }
+
+/* ---------- hero ---------- */
+
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+#plume { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero-inner {
+  position: relative;
+  max-width: var(--page); margin: 0 auto;
+  padding: 3.8rem 1.6rem 3.2rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 2.8rem; align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  margin: 0 0 0.6rem; letter-spacing: -0.015em;
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal); margin: 0 0 0.9rem; text-wrap: balance;
+}
+.hero .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 46ch; margin: 0 0 1.6rem; }
+
+.portrait {
+  width: 200px; height: 200px; border-radius: 50%;
+  overflow: hidden; background: var(--teal-soft);
+  border: 1px solid var(--rule);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.07);
+  flex: none; display: grid; place-items: center;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait .initials { display: none; font-family: var(--serif); font-size: 3rem; color: var(--teal); }
+.portrait.is-empty img { display: none; }
+.portrait.is-empty .initials { display: block; }
+
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  display: inline-block; padding: 0.34rem 0.85rem;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--bg-panel); font-size: 0.85rem; color: var(--ink-soft);
+}
+.chip:hover { border-color: var(--teal); color: var(--teal); text-decoration: none; }
+.chip.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+.chip.primary:hover { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .chip.primary, .chip.primary:hover { color: #10201f; }
+}
+
+/* ---------- sections ---------- */
+
+section { padding: 2.9rem 0; border-bottom: 1px solid var(--rule); }
+section:last-of-type { border-bottom: 0; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.7rem; letter-spacing: 0.17em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 1.3rem;
+}
+
+h2.head { font-size: 1.5rem; margin: 0 0 1rem; }
+h3 { font-size: 1.1rem; margin: 0 0 0.3rem; }
+
+p { max-width: var(--measure); }
+p + p { margin-top: 1rem; }
+.prose p { color: var(--ink-soft); }
+.prose strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- experience timeline ---------- */
+
+.tl { display: grid; gap: 1.7rem; }
+.tl-row { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1.6rem; align-items: baseline; }
+.tl-when {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em;
+  color: var(--ink-faint); padding-top: 0.25rem;
+}
+.tl-row h3 { margin-bottom: 0.15rem; }
+.tl-org { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 0.4rem; }
+.tl-body { color: var(--ink-soft); font-size: 0.96rem; margin: 0; }
+
+/* ---------- project cards ---------- */
+
+/* One card per row: media on the left, text on the right.
+   Collapses to stacked media-over-text on narrow screens. */
+.cards { display: grid; gap: 1.5rem; }
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  background: var(--bg-panel);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover { border-color: color-mix(in srgb, var(--teal) 45%, var(--rule)); box-shadow: 0 3px 16px rgba(0,0,0,0.06); }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+/* Media well: edge to edge, full height of the card. `cover` fills the
+   column so the media matches the text block instead of floating in it.
+   White backing means any residual band on a white-background figure is
+   invisible rather than reading as an inset. */
+.card-media {
+  position: relative;
+  background: #fff;
+  border-right: 1px solid var(--rule);
+  overflow: hidden;
+}
+/* Match the backing to the media's own background so the letterbox
+   from `contain` reads as part of the image, not as an inset frame. */
+.card-media--ink { background: #3151a3; }
+.card-media img,
+.card-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* `contain`, not `cover`: these are multi-panel figures and instrument
+     photos — cropping them loses the evidence they exist to show. */
+  object-fit: contain;
+  display: block;
+}
+.card-media video { cursor: pointer; }
+.media-badge {
+  position: absolute; top: 1.1rem; right: 1.1rem;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  background: color-mix(in srgb, var(--teal) 90%, transparent); color: #fff;
+  padding: 0.16rem 0.5rem; border-radius: 999px;
+  pointer-events: none;
+}
+@media (prefers-color-scheme: dark) { .media-badge { color: #10201f; } }
+
+.card-body { padding: 1.3rem 1.4rem; display: flex; flex-direction: column; justify-content: center; }
+.card-body h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.card-body p { color: var(--ink-soft); font-size: 0.93rem; margin: 0; max-width: none; }
+.card-body p + p { margin-top: 0.6rem; }
+.card-when {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint);
+  margin: 0 0 0.55rem;
+}
+
+/* Skills eyebrow — what the project demonstrates, stated up front. */
+.cat {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sage); margin: 0 0 0.4rem;
+  line-height: 1.5;
+}
+.when {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--ink-faint); white-space: nowrap;
+}
+
+.tags { margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.32rem; }
+.tag {
+  font-family: var(--mono); font-size: 0.66rem;
+  padding: 0.14rem 0.48rem; border-radius: 4px;
+  background: var(--teal-soft); color: var(--teal);
+}
+
+.card-links {
+  margin-top: auto; padding-top: 1rem;
+  display: flex; gap: 1.1rem; flex-wrap: wrap;
+  font-size: 0.86rem;
+}
+.card-links a::after { content: " ↗"; color: var(--ink-faint); }
+
+figure { margin: 1.1rem 0 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--rule); display: block; }
+figcaption { font-size: 0.84rem; color: var(--ink-faint); margin-top: 0.45rem; }
+
+/* ---------- skills ---------- */
+
+dl.skills { margin: 0; display: grid; gap: 0.95rem; }
+dl.skills dt {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.2rem;
+}
+dl.skills dd { margin: 0; color: var(--ink-soft); font-size: 0.97rem; }
+
+/* ---------- publications ---------- */
+
+ol.pubs { margin: 0; padding-left: 1.3rem; }
+ol.pubs li { margin-bottom: 1.05rem; color: var(--ink-soft); max-width: var(--measure); }
+ol.pubs li::marker { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-faint); }
+ol.pubs .title { color: var(--ink); }
+.venue { font-style: italic; }
+.status {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.1rem 0.45rem; border: 1px solid var(--rule); border-radius: 3px;
+  color: var(--ink-faint); margin-left: 0.3rem; white-space: nowrap;
+}
+
+/* ---------- simple lists ---------- */
+
+ul.plain { list-style: none; margin: 0; padding: 0; }
+ul.plain li {
+  padding: 0.5rem 0; border-bottom: 1px dotted var(--rule);
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  color: var(--ink-soft); font-size: 0.96rem;
+}
+ul.plain li:last-child { border-bottom: 0; }
+
+/* ---------- CV page (print source) ---------- */
+
+.entry { margin-bottom: 1.6rem; }
+.entry:last-child { margin-bottom: 0; }
+.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.entry-head h3 { margin: 0; }
+.entry .org { color: var(--ink-soft); font-size: 0.95rem; margin: 0.1rem 0 0; }
+.entry ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+.entry li { margin-bottom: 0.35rem; color: var(--ink-soft); max-width: var(--measure); font-size: 0.97rem; }
+.entry li::marker { color: var(--teal); }
+
+/* ---------- footer ---------- */
+
+footer { border-top: 1px solid var(--rule); padding: 2rem 0 2.8rem; color: var(--ink-faint); font-size: 0.86rem; }
+footer a { color: var(--ink-soft); }
+.footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 44rem) {
+  .hero-inner { grid-template-columns: 1fr; gap: 1.7rem; padding-top: 2.6rem; }
+  .portrait { width: 132px; height: 132px; order: -1; }
+  .tl-row { grid-template-columns: 1fr; gap: 0.15rem; }
+  .tl-when { padding-top: 0; }
+  .project-head { gap: 0.15rem; }
+
+  /* Stack the card: media above text. The media is absolutely positioned,
+     so once it is no longer stretched by a grid row it needs its own
+     aspect ratio or the well collapses to zero height. */
+  .card { grid-template-columns: 1fr; }
+  .card-media {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    aspect-ratio: 16 / 9;
+  }
+  .card-body { padding: 1.2rem 1.25rem 1.3rem; }
+}
+
+/* ---------- print: cv.html is the PDF source ---------- */
+
+@page { size: letter; margin: 0.52in 0.6in; }
+
+@media print {
+  :root {
+    --bg: #fff; --bg-panel: #fff; --bg-sunk: #fff;
+    --ink: #000; --ink-soft: #1c1c1c; --ink-faint: #555;
+    --rule: #c6c6c6; --teal: #17504e; --teal-soft: #fff; --sage: #4a5a49;
+  }
+  body { font-size: 9.6pt; line-height: 1.42; background: #fff; }
+  .nav, footer, #plume, .links, .no-print { display: none !important; }
+  .wrap { max-width: none; padding: 0; }
+  .hero { border-bottom: 1.5px solid #000; overflow: visible; }
+  .hero-inner { padding: 0 0 0.45rem; display: block; }
+  .hero h1 { font-size: 21pt; margin-bottom: 0.15rem; }
+  .hero .lede { font-size: 9.4pt; max-width: none; margin: 0.25rem 0 0; color: #1c1c1c; }
+  .kicker { font-size: 7.6pt; margin-bottom: 0.3rem; color: #17504e; }
+  .print-contact { display: block !important; font-size: 8.6pt; color: #1c1c1c; margin-top: 0.3rem; }
+  /* Sections flow across pages; individual entries stay whole. */
+  section { padding: 0.5rem 0 0; border-bottom: 0; }
+  .section-label { break-after: avoid; page-break-after: avoid; }
+  .section-label {
+    font-size: 7.4pt; margin-bottom: 0.4rem; color: #000;
+    border-bottom: 0.5px solid #999; padding-bottom: 0.12rem;
+  }
+  h3 { font-size: 10.6pt; }
+  /* Long entries may span a page break, but never orphan their heading. */
+  .entry { margin-bottom: 0.6rem; orphans: 2; widows: 2; }
+  .entry-head, .entry .org { break-after: avoid; page-break-after: avoid; }
+  .entry li { break-inside: avoid; page-break-inside: avoid; }
+  .entry li, dl.skills dd, ol.pubs li, ul.plain li { font-size: 9.4pt; }
+  .entry li { margin-bottom: 0.12rem; }
+  dl.skills { gap: 0.4rem; }
+  ol.pubs { padding-left: 1.55rem; }
+  ol.pubs li { margin-bottom: 0.28rem; page-break-inside: avoid; }
+  ul.plain li { padding: 0.13rem 0; }
+  .prose p { max-width: none; }
+  .status { border: 0; padding: 0; margin-left: 0.2rem; font-size: 7.6pt; }
+  a { color: #000; text-decoration: none; }
+}
+
+.print-contact { display: none; }
