@@ -10,27 +10,24 @@
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="nav-name" href="index.html">Jaleesa Houle</a>
-    <a class="nav-link" href="publications.html">Publications</a>
-    <a class="nav-link" href="https://github.com/JaleesaHoule">GitHub</a>
-    <a class="nav-link" href="https://www.linkedin.com/in/jaleesahoule">LinkedIn</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <canvas id="plume" aria-hidden="true"></canvas>
+<header class="hero hero--video">
+  <video class="hero-video" src="assets/banner-butterflies.mp4"
+         poster="assets/banner-butterflies.jpg"
+         autoplay muted loop playsinline preload="auto"
+         aria-label="Butterflies swarming a rock cairn on a mountain summit"
+         onerror="this.remove()"></video>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-inner">
     <div>
       <p class="kicker">Mechanical Engineer · Ph.D., University of Nevada, Reno</p>
       <h1>Jaleesa Houle</h1>
       <p class="lede">
-        My work has focused on sensory-processing and navigational strategies in autonomous biological systems, data science methods for extracting insight from messy time series, near-surface wind variability (atmospheric science), and computational simulation methods. I enjoy building tools and communicating results in ways that are accessible to a broad audience.
+        I love nature and science, and enjoy finding ways to combine them.
       </p>
       <div class="links">
         <a class="chip primary" href="mailto:jaleesa.houle@gmail.com">Email</a>
-        <a class="chip" href="assets/Jaleesa_Houle_CV.pdf">Download CV</a>
+        <a class="chip" href="publications.html">Publications</a>
+        <a class="chip" href="https://github.com/JaleesaHoule">GitHub</a>
       </div>
     </div>
     <div class="portrait">
@@ -40,6 +37,7 @@
     </div>
   </div>
 </header>
+
 
 <main class="wrap">
 
@@ -149,7 +147,7 @@
                  autoplay muted loop playsinline preload="auto"
                  aria-label="Measured flight trajectory overlaid on the simulated gust flow field"
                  onerror="this.closest('.card-media').remove()"></video>
-          <span class="media-badge">CFD overlay</span>
+          <span class="media-badge">CFD & trajectory overlayed</span>
         </div>
         <div class="card-body">
           <p class="cat">Moving-mesh CFD · trajectory analysis</p>
@@ -194,14 +192,22 @@
 
     </div>
   </section>
-
+ 
   <section id="beyond">
-    <p class="section-label">Beyond work</p>
-    <div class="prose">
-      <p>
-        I've thru-hiked the Appalachian Trail, the Pacific Crest Trail, the Continental Divide Trail,
-        and Te Araroa across New Zealand. I sometimes run far and I dabble in making sourdough.
-      </p>
+    <p class="section-label">A little about me</p>
+    <div class="about">
+      <div class="prose">
+        <p>
+          I decided to hike the Appalachian Trail when I was 20 and unsure of what to do with my life. I fell in love with moving through nature, and subsequently decided to hike the Pacific Crest Trail (2016), Te Araroa (2016-17), and Continental Divide Trail (2018). I've worked in a remote hut in the White Mountains, spent a year as a crew leader for Conservation Corps, and was on a working holiday visa in Australia during COVID. I returned to school in 2021 to pursue a degree in engineering, where I fell in love with research. I still don't entirely know where my path is leading in life, but am figuring it out as I make it. I sometimes run far, climb, splitboard, and dabble in making sourdough.
+        </p>
+      </div>
+      <figure class="about-photo">
+        <img src="assets/about-katahdin.jpg"
+             alt="A group of thru-hikers spraying champagne at the summit sign on Katahdin, the northern terminus of the Appalachian Trail"
+             loading="lazy"
+             onerror="this.closest('figure').remove()">
+        <figcaption> Mt. Katahdin — the northern terminus of the Appalachian Trail. 2014.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -212,21 +218,18 @@
     <span>Jaleesa Houle · Reno, Nevada</span>
     <span class="footer-links">
       <a href="mailto:jaleesa.houle@gmail.com">Email</a>
-      <a href="assets/Jaleesa_Houle_CV.pdf">CV</a>
       <a href="publications.html">Publications</a>
       <a href="https://github.com/JaleesaHoule">GitHub</a>
-      <a href="https://www.linkedin.com/in/jaleesahoule">LinkedIn</a>
     </span>
   </div>
 </footer>
 
-<script src="plume.js"></script>
 <script>
 /* Card demo videos: play only while on screen, click to toggle,
    and never autoplay for visitors who ask for reduced motion. */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var videos = [].slice.call(document.querySelectorAll('.card-media video'));
+  var videos = [].slice.call(document.querySelectorAll('.card-media video, .hero-video'));
   if (!videos.length) return;
 
   // Reduced motion: cancel the markup autoplay, hand over manual controls.

@@ -14,6 +14,7 @@ assets/photo-original.png
 *.mov
 /*.avi
 /*.mp4
+/*.gif
 /*.jpg
 /*.png
 

@@ -14,6 +14,7 @@ GitHub Pages serves the files as-is.
 | `publications.html` | Papers and preprints |
 | `404.html` | Custom not-found page (GitHub Pages serves this automatically) |
 | `build-cv.sh` | Regenerates the CV PDF from `_local/cv.html` |
+| `serve.py` | Local preview server — see below for why not `python -m http.server` |
 | `style.css` | All styling, including the print rules that shape the PDF |
 | `plume.js` | Animated particle plume behind the page headers |
 | `assets/` | Images and video — see `assets/README.md` |
@@ -22,9 +23,18 @@ GitHub Pages serves the files as-is.
 ## Preview locally
 
 ```sh
-python3 -m http.server 8000
+./serve.py
 # then visit http://localhost:8000
 ```
+
+**Use `serve.py`, not `python3 -m http.server`.** The stdlib server ignores HTTP
+`Range` headers and returns the whole file with a 200. Safari refuses to play a
+`<video>` from a server that doesn't support ranges, so the videos silently fail to
+autoplay locally while working fine once deployed — GitHub Pages answers 206 Partial
+Content. Chrome tolerates the stdlib behaviour, which makes the problem look like a
+Safari bug when it's really a server limitation. `serve.py` adds range support (and
+sends `Cache-Control: no-store`, so swapped images and videos appear on a normal
+reload instead of needing ⌘⇧R).
 
 ## Publishing
 

@@ -3,6 +3,8 @@
 | File | Status | Where it appears |
 | --- | --- | --- |
 | `headshot.jpg` | ✅ in place | Circular portrait in the `index.html` header |
+| `banner-butterflies.mp4` | ✅ in place | Full-width banner below the hero. Converted from a 65 MB GIF — see below |
+| `banner-butterflies.jpg` | ✅ in place | ↳ its poster frame |
 | `photo-original.png` | local only (gitignored) | Full-frame source for the crop above |
 | `Jaleesa_Houle_CV.pdf` | ✅ generated | Every "CV" / "Download CV" link. Rebuild with `../build-cv.sh` |
 
@@ -51,6 +53,28 @@ ffmpeg -sseof -0.2 -i raw.mov -frames:v 1 poster.png    # poster from the final 
 
 Add `-vf "crop=W:H:X:Y,scale=1280:-2"` to trim dead space and downscale. Aim for well
 under 1 MB per clip.
+
+### Never put a GIF on the page
+
+GIF is a catastrophically inefficient video format. The butterfly banner started as a
+65 MB GIF and became a **651 KB MP4** that looks the same — a 100× reduction. Converting
+one, with a crop to a wide banner strip:
+
+```sh
+ffmpeg -i in.gif -vf "crop=1920:760:0:0,scale=1440:-2" \
+       -c:v libx264 -crf 29 -preset veryslow \
+       -pix_fmt yuv420p -movflags +faststart -an banner-x.mp4
+ffmpeg -ss 1.5 -i in.gif -frames:v 1 -vf "crop=1920:760:0:0,scale=1440:-2" poster.png
+```
+
+An `<video autoplay muted loop playsinline>` element behaves exactly like a GIF —
+silent, looping, no controls — at a fraction of the weight.
+
+### Replacing the banner
+
+Overwrite `banner-butterflies.mp4` and `.jpg`. The banner markup lives just after
+`</header>` in `index.html`; its caption text is in the `.banner-caption` paragraph, and
+the crop shape is set by `aspect-ratio` on `.banner video` in `style.css`.
 
 ### Better media worth adding
 
