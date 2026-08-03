@@ -220,14 +220,48 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
   /* Stacked layout puts the portrait on top and text below, so the veil runs
      vertically instead: footage visible up top, solid behind the words. */
   .hero--video { min-height: 0; }
-  .hero-video { object-position: center 34%; }
-  .hero-scrim {
-    background: linear-gradient(180deg,
-      color-mix(in srgb, var(--bg) 45%, transparent) 0%,
-      color-mix(in srgb, var(--bg) 80%, transparent) 26%,
-      var(--bg) 46%,
-      var(--bg) 100%);
+
+  /* Full-bleed `cover` fails on a portrait viewport: filling a 390x560 box from
+     a 2.53:1 clip scales to height and leaves only ~28% of the frame's width
+     visible — a narrow slice of empty sky. Showing it as a band instead keeps
+     the aspect close to the source, so most of the scene (cairn, butterflies)
+     is actually in view. The mask fades its own bottom edge, which is robust to
+     however tall the hero ends up. */
+  .hero-video {
+    height: 13rem;
+    bottom: auto;
+    object-position: center 46%;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 58%, transparent 100%);
   }
+
+  /* The kicker is `nowrap` for the desktop layout, where it has room on one
+     line. On a phone it doesn't fit, and because .hero is overflow:hidden it
+     was being silently clipped rather than pushing the page wide — so it never
+     showed up as an overflow. Let it wrap here. */
+  .hero--video .kicker {
+    text-wrap: wrap;
+    white-space: normal;
+  }
+
+  /* Stack it. This override is essential: `.hero--video .hero-inner` outranks
+     the generic mobile `.hero-inner` rule, so without it the hero stayed a
+     two-column grid and squeezed the text into ~143px beside the portrait,
+     which is what forced the kicker into five lines.
+     The padding-top also clears space so the footage is genuinely visible
+     rather than a thin strip behind the portrait. */
+  .hero--video .hero-inner {
+    grid-template-columns: 1fr;
+    row-gap: 1.1rem;
+    padding-top: 9.5rem;
+    padding-bottom: 2.4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* No scrim needed: the video is a band that fades out via its own mask, and
+     all the text sits below it on the plain page background. */
+  .hero-scrim { background: none; }
 }
 
 /* ---------- sections ---------- */
