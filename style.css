@@ -107,7 +107,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
   font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--teal); margin: 0 0 0.9rem; text-wrap: nowrap;
 }
-.hero .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 100ch; margin: 0 0 1.6rem; }
+.hero .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 200ch; margin: 0 0 1.6rem; }
 
 .portrait {
   width: 200px; height: 200px; border-radius: 50%;
@@ -172,23 +172,26 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
      px width, so a %-of-viewport pool drifts out from under the text — at 1100px
      that left the lede at 1.0:1, i.e. invisible. In px the protection tracks the
      text at every viewport width instead. Stops are fractions of that radius. */
-  --pool-w: 1150px;
-  --pool-mid: 62%;
-  --pool-end: 88%;
+  /* Deliberately thin, so the footage stays visible right across the frame. The
+     text is legible because each glyph carries its own halo (see .hero--video
+     text-shadow below) rather than because the whole area is veiled. */
+  --pool-w: 1250px;
+  --pool-mid: 58%;
+  --pool-end: 86%;
   background:
     /* A pool of page colour anchored behind the text block. A plain left-to-right
        ramp left the lede sitting over mid-tone rock at only 2.4:1 — this keeps the
        protection with the text instead of spreading it evenly. */
     radial-gradient(var(--pool-w) 130% at 0% 52%,
-      var(--bg) 0%,
-      color-mix(in srgb, var(--bg) 96%, transparent) 40%,
-      color-mix(in srgb, var(--bg) 80%, transparent) var(--pool-mid),
+      color-mix(in srgb, var(--bg) 95%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 86%, transparent) 40%,
+      color-mix(in srgb, var(--bg) 66%, transparent) var(--pool-mid),
       transparent var(--pool-end)),
     /* Light overall veil. Kept thin so the footage keeps its contrast; the
        radial above is what protects the text. */
     linear-gradient(100deg,
-      color-mix(in srgb, var(--bg) 30%, transparent) 0%,
-      color-mix(in srgb, var(--bg) 10%, transparent) 70%,
+      color-mix(in srgb, var(--bg) 20%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 6%, transparent) 70%,
       transparent 100%);
 }
 
@@ -198,7 +201,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
 /* Pack the portrait and text into a left-aligned cluster and break out of the
    centred page column, so the right of the frame stays open footage. */
 .hero--video .hero-inner {
-  grid-template-columns: auto minmax(0, 25rem);
+  grid-template-columns: auto minmax(0, 34rem);
   justify-content: start;
   column-gap: 2.2rem;
   max-width: none;
@@ -211,7 +214,29 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.22; }
 .hero--video .portrait { order: -1; }
 
 /* Keep the lede inside the protected pool rather than running out over rock. */
-.hero--video .lede { max-width: 30ch; }
+/* The grid column governs the measure now, so no extra cap here. `pretty` asks
+   the browser to avoid a short last line rather than filling greedily. */
+.hero--video .lede {
+  max-width: none;
+  text-wrap: pretty;
+  /* Darker than the usual --ink-soft, since it sits on footage rather than on
+     flat page colour. */
+  color: var(--ink);
+}
+
+/* Per-glyph halo, drawn in the page colour. This is what makes a thin veil
+   workable: contrast is bought locally around each letter instead of by
+   flooding the whole hero, so the footage stays visible between the words.
+   Built from var(--bg), so it is a pale halo behind dark text in light mode and
+   a dark one behind light text in dark mode. */
+.hero--video .kicker,
+.hero--video h1,
+.hero--video .lede {
+  text-shadow:
+    0 0 3px var(--bg),
+    0 0 8px var(--bg),
+    0 0 18px var(--bg);
+}
 
 .hero--video #plume { z-index: 2; }
 .hero--video .hero-inner { z-index: 3; }
@@ -444,6 +469,13 @@ ol.pubs { margin: 0; padding-left: 1.3rem; }
 ol.pubs li { margin-bottom: 1.05rem; color: var(--ink-soft); max-width: var(--measure); }
 ol.pubs li::marker { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-faint); }
 ol.pubs .title { color: var(--ink); }
+/* DOI lines read as metadata, like .status and .card-when elsewhere. */
+ol.pubs a[href*="doi.org"] {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.01em;
+  word-break: break-all;
+}
 .venue { font-style: italic; }
 .status {
   font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
